@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 
 const apikey =
     'd1cb787cbcc3a33a2d775d0712ec94daa408fb7e19782eba54576f433ac742f2';
+const constenddata = 'https://min-api.cryptocompare.com/data/price?fsym=';
 
 class PriceScreen extends StatefulWidget {
   const PriceScreen({super.key});
@@ -31,7 +32,7 @@ class _PriceScreenState extends State<PriceScreen> {
 
   Future getdata({String? cryptotype}) async {
     final response = await http.get(Uri.parse(
-        'https://min-api.cryptocompare.com/data/price?fsym=$cryptotype&tsyms=$selectedcurrency&api_key={$apikey}'));
+        '$constenddata$cryptotype&tsyms=$selectedcurrency&api_key={$apikey}'));
 
     return jsonDecode(response.body)[selectedcurrency];
   }
